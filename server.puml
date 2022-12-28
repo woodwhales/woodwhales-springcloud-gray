@@ -1,0 +1,18 @@
+@startuml
+actor client
+[nginx]
+[ gray-zuul ]
+[ gray-server1-old ]
+[ gray-server1-new ]
+[ gray-server2-old ]
+[ gray-server2-new ]
+
+client -> [nginx]
+[nginx] -> [ gray-zuul ]
+[ gray-zuul ] -up-> [ gray-server1-old ]
+[ gray-zuul ] -down-> [ gray-server1-new ]
+
+[ gray-server1-old ] -right-> [ gray-server2-old ]
+[ gray-server1-new ] -right-> [ gray-server2-new ]
+
+@enduml

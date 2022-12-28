@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: gray-eureka
+
+server:
+  address: 0.0.0.0
+  port: 9079
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://127.0.0.1:9079/eureka/
+  instance:
+    prefer-ip-address: true
+

@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: gray-server2
+
+server:
+  address: 0.0.0.0
+  port: 9084
+
+eureka:
+  client:
+    serviceUrl.defaultZone: http://127.0.0.1:9079/eureka/
+  instance:
+    prefer-ip-address: true
+
