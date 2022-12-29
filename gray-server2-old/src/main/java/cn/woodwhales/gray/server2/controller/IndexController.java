@@ -1,16 +1,15 @@
 package cn.woodwhales.gray.server2.controller;
 
+import cn.woodwhales.gray.common.feign.Server2FeignClient;
 import cn.woodwhales.gray.common.model.ParamBody;
 import cn.woodwhales.gray.common.model.RespVo;
+import cn.woodwhales.gray.common.model.dto.ServerChain;
+import cn.woodwhales.gray.common.util.ParamBodyTool;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author woodwhales on 2022-12-28 20:09
@@ -18,18 +17,11 @@ import java.util.Map;
 @Slf4j
 @RequestMapping
 @RestController
-public class IndexController {
-
-    @Value("${spring.application.name}")
-    private String applicationName;
+public class IndexController implements Server2FeignClient {
 
     @PostMapping("/save")
-    public RespVo<Map<String, Object>> save(@RequestBody ParamBody<Void> paramBody) {
-        log.info("param = {}", paramBody.toString());
-        Map<String, Object> map = new HashMap<>();
-        map.put("param", paramBody);
-        map.put("applicationName", applicationName);
-        return RespVo.success(map);
+    public RespVo<Object> save(@RequestBody ParamBody<ServerChain> param) {
+        return RespVo.success(ParamBodyTool.build(param));
     }
 
 }

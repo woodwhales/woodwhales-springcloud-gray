@@ -1,10 +1,10 @@
 spring:
   application:
-    name: gray-server2
+    name: gray-zuul
 
 server:
   address: 0.0.0.0
-  port: 9084
+  port: 9080
 
 eureka:
   client:
@@ -13,7 +13,7 @@ eureka:
   instance:
     prefer-ip-address: true
 config:
-  serverName: gray-server2-new
+  serverName: gray-zuul
 
 logging:
   level:

@@ -12,13 +12,20 @@ public class RespVo<T> {
 
     private Integer code;
     private String message;
-
     private T data;
 
     public RespVo(Integer code, String message, T data) {
         this.code = code;
         this.message = message;
         this.data = data;
+    }
+
+    public static <T> RespVo<T> error() {
+        return new RespVo<>(-200, "error", null);
+    }
+
+    public static <T> RespVo<T> error(String errorMsg) {
+        return new RespVo<>(-200, errorMsg, null);
     }
 
     public static <T> RespVo<T> success() {
