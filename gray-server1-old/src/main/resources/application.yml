@@ -12,6 +12,8 @@ eureka:
       defaultZone: http://127.0.0.1:9079/eureka/
   instance:
     prefer-ip-address: true
+    metadata-map:
+      gray-tag: v1
 config:
   serverName: gray-server1-old
 

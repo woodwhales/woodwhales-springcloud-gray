@@ -1,4 +1,4 @@
-package cn.woodwhales.gray.server1.config;
+package cn.woodwhales.gray.common.config;
 
 import cn.woodwhales.gray.common.model.RespVo;
 import lombok.extern.slf4j.Slf4j;
