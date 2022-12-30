@@ -1,10 +1,10 @@
 spring:
   application:
-    name: gray-zuul
+    name: gray-server2
 
 server:
   address: 0.0.0.0
-  port: 9080
+  port: 9085
 
 eureka:
   client:
@@ -13,9 +13,9 @@ eureka:
   instance:
     prefer-ip-address: true
     metadata-map:
-      gray-tag: v1
+      gray-tag: v2
 config:
-  serverName: ${spring.application.name}
+  serverName: ${spring.application.name}-new2
 
 logging:
   level:

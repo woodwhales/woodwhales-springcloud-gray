@@ -2,8 +2,8 @@ package cn.woodwhales.gray.common.config;
 
 import cn.hutool.extra.spring.SpringUtil;
 import cn.woodwhales.gray.common.constant.Constant;
+import cn.woodwhales.gray.common.util.DataTool;
 import cn.woodwhales.gray.common.util.RequestTool;
-import com.alibaba.fastjson.JSON;
 import com.google.common.base.Optional;
 import com.netflix.loadbalancer.Server;
 import com.netflix.loadbalancer.ZoneAvoidanceRule;
@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * @author woodwhales on 2022-12-29 19:49
@@ -51,19 +50,14 @@ public class GrayRule extends ZoneAvoidanceRule {
             }
         }
 
-        log.info("grayTag => {} serverName {} => normalServerList = {}", grayTag, serverName, JSON.toJSON(normalServerList.stream().map(Server::getHostPort).collect(Collectors.toList())));
-
+        List<Server> selectServers;
         if(StringUtils.isBlank(grayTag)) {
-            return originChoose(normalServerList, key);
+            selectServers = normalServerList;
         } else {
-            List<Server> serverList = map.get(grayTag);
-            if(org.apache.commons.collections4.CollectionUtils.isNotEmpty(serverList)) {
-                log.info("grayTag => {} serverName {} => {}", grayTag, serverName, JSON.toJSON(serverList.stream().map(Server::getHostPort).collect(Collectors.toList())));
-            } else {
-                log.info("grayTag => {} serverName {} => {}", grayTag, serverName, "[]");
-            }
-            return originChoose(serverList, key);
+            selectServers = map.get(grayTag);
         }
+        log.info("grayTag => {} serverName {} => {}", grayTag, serverName, DataTool.toList(selectServers, Server::getHostPort));
+        return originChoose(selectServers, key);
     }
 
     private Server originChoose(List<Server> serverList, Object key) {

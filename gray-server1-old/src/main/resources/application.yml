@@ -15,7 +15,7 @@ eureka:
     metadata-map:
       gray-tag: v1
 config:
-  serverName: gray-server1-old
+  serverName: ${spring.application.name}-old
 
 logging:
   level:

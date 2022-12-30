@@ -14,9 +14,10 @@
         <module>gray-server1-old</module>
         <module>gray-server1-new</module>
         <module>gray-server2-old</module>
-        <module>gray-server2-new</module>
+        <module>gray-server2-new1</module>
         <module>gray-common</module>
         <module>gray-eureka</module>
+        <module>gray-server2-new2</module>
     </modules>
 
     <properties>
