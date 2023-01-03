@@ -1,5 +1,6 @@
 package cn.woodwhales.gray.common.util;
 
+import cn.woodwhales.gray.common.config.gateway.GlobalContext;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -14,16 +15,20 @@ import java.util.Objects;
 public class RequestTool {
     public static String getHeader(String headerName) {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        HttpServletRequest request = attributes.getRequest();
-        Enumeration<String> headerNames = request.getHeaderNames();
-        if(Objects.isNull(headerNames)) {
-            return null;
-        }
-        while (headerNames.hasMoreElements()) {
-            String requestHeaderName = headerNames.nextElement();
-            if(StringUtils.equals(requestHeaderName, headerName)) {
-                return request.getHeader(requestHeaderName);
+        if(Objects.nonNull(attributes)) {
+            HttpServletRequest request = attributes.getRequest();
+            Enumeration<String> headerNames = request.getHeaderNames();
+            if(Objects.isNull(headerNames)) {
+                return null;
             }
+            while (headerNames.hasMoreElements()) {
+                String requestHeaderName = headerNames.nextElement();
+                if(StringUtils.equals(requestHeaderName, headerName)) {
+                    return request.getHeader(requestHeaderName);
+                }
+            }
+        } else {
+            return GlobalContext.getCurrentEnvironment();
         }
         return null;
     }

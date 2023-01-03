@@ -7,6 +7,16 @@ spring:
         locator:
           # 开启从注册中心动态创建路由的功能，利用微服务名进行路由
           enabled: true
+          # 请求路径上的服务名配置为小写
+          lower-case-service-id: true
+      routes:
+        - id: gray-server1
+          uri: lb://gray-server1
+          predicates:
+            - Path=/gray-server1/**
+          filters:
+            # StripPrefix 数字表示要截断的路径的数量
+            - StripPrefix=1
 
 server:
   address: 0.0.0.0
