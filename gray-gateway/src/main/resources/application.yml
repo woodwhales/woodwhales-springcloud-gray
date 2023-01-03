@@ -1,10 +1,16 @@
 spring:
   application:
-    name: gray-zuul
+    name: gray-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          # 开启从注册中心动态创建路由的功能，利用微服务名进行路由
+          enabled: true
 
 server:
   address: 0.0.0.0
-  port: 9080
+  port: 9086
 
 eureka:
   client:

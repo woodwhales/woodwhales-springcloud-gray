@@ -18,6 +18,7 @@
         <module>gray-common</module>
         <module>gray-eureka</module>
         <module>gray-server2-new2</module>
+        <module>gray-gateway</module>
     </modules>
 
     <properties>
