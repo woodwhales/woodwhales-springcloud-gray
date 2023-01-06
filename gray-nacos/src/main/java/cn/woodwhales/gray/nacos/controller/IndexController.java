@@ -1,8 +1,10 @@
 package cn.woodwhales.gray.nacos.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -18,8 +20,12 @@ public class IndexController {
     @Value("${config.grayTag}")
     private String grayTag;
 
+    @Autowired
+    private ConfigurableApplicationContext configurableApplicationContext;
+
     @GetMapping("config")
     public String config() {
+        log.info("config.grayTag = {}", configurableApplicationContext.getEnvironment().getProperty("config.grayTag"));
         return grayTag;
     }
 
