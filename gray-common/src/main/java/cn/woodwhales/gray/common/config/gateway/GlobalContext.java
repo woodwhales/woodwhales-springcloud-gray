@@ -7,8 +7,8 @@ public class GlobalContext {
 
     private static ThreadLocal<String> threadLocal = new ThreadLocal<String>();
 
-    public static void setCurrentEnvironment(String currentEnvironmentVsersion) {
-        threadLocal.set(currentEnvironmentVsersion);
+    public static void setCurrentEnvironment(String currentEnvironmentVersion) {
+        threadLocal.set(currentEnvironmentVersion);
     }
 
     public static String getCurrentEnvironment() {
