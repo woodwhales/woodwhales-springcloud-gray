@@ -14,7 +14,11 @@ Spring-Cloud 灰度发布服务端口说明
 | gray-gateway      | 9086 |
 | gray-nacos        | 9087 |
 
+## spring-cloud
+
 上述除 gray-eureka、gray-nacos 之外均需要引入自定义负载均衡策略：
+
+![](doc/images/01.png)
 
 步骤1：自定义 IRule 接口实现：cn.woodwhales.gray.common.config.GrayRule
 
@@ -168,4 +172,12 @@ public class MyFeignRequestInterceptor implements RequestInterceptor {
     }
 }
 ```
+
+## nacos 服务
+
+如果灰度发布服务需要不停服更新配置，可以使用 nacos
+
+本地启动 nacos 服务，在 nacos 控制台配置 Data Id
+
+![](doc/images/02.png)
 
