@@ -8,7 +8,7 @@ spring:
         server-addr: 127.0.0.1:8848
         enableRemoteSyncConfig: true
         # 指定 nacos dataId 的后缀名
-        file-extension: yaml
+        file-extension: yml
         extension-configs:
           - data-id: ${spring.application.name}.yml
             group: DEFAULT_GROUP

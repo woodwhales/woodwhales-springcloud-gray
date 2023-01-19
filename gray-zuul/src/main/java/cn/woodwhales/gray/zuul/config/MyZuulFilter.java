@@ -37,12 +37,6 @@ public class MyZuulFilter extends ZuulFilter {
     public Object run() throws ZuulException {
         RequestContext ctx = RequestContext.getCurrentContext();
         String grayTag = ctx.getRequest().getHeader(Constant.GRAY_TAG_HEADER);
-//        HttpServletRequest request = ctx.getRequest();
-//        Enumeration<String> headerNames = request.getHeaderNames();
-//        while (headerNames.hasMoreElements()){
-//            String headerName = (String) headerNames.nextElement();
-//            log.info("header -> {} : {}", headerName, request.getHeader(headerName));
-//        }
         log.info("header -> {} : {}", Constant.GRAY_TAG_HEADER, grayTag);
         return null;
     }

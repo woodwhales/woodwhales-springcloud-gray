@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 @Slf4j
 @Configuration
 @ConditionalOnClass(Feign.class)
-public class DefaultFeignConfig implements RequestInterceptor {
+public class MyFeignRequestInterceptor implements RequestInterceptor {
 
     @Value("${config.serverName}")
     private String serverName;
